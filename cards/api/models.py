@@ -15,7 +15,13 @@ class BaseModel(models.Model):
 class Tag(BaseModel):
     name = models.CharField(max_length=30, null=False, blank=False)
 
+    def __str__(self):
+        return self.name
+
 
 class Card(BaseModel):
     texto = models.TextField(null=False, blank=False)
     tags = models.ManyToManyField(Tag, null=False, blank=False, related_name='card_tags')
+
+    def __str__(self):
+        return self.texto
