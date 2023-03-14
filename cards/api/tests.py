@@ -31,7 +31,7 @@ class TagTests(APITestCase):
         resp = self.client.get("/api/tag/{}/".format(tag.id))
 
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.json(), {"id": 1, "name": "simple tag 1"})
+        self.assertEqual(resp.json(), {"id": tag.id, "name": "simple tag 1"})
 
     def test_update_one_tag(self):
         tag = Tag.objects.create(name="simple tag 1")
@@ -39,7 +39,7 @@ class TagTests(APITestCase):
         resp = self.client.patch("/api/tag/{}/".format(tag.id), data={"name": "update tag"}, format="json")
 
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.json(), {"id": 1, "name": "update tag"})
+        self.assertEqual(resp.json(), {"id": tag.id, "name": "update tag"})
 
     def test_delete_one_tag(self):
         tag = Tag.objects.create(name="simple tag 1")
@@ -88,7 +88,7 @@ class CardsTests(APITestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.json(), {
-            "id": 1,
+            "id": c1.id,
             "texto": "simple text 2",
             "data_criacao": "2023-03-14T12:00:00Z",
             "data_modificacao": "2023-03-14T12:00:00Z",
@@ -110,7 +110,7 @@ class CardsTests(APITestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.json(), {
-            "id": 1,
+            "id": c1.id,
             "texto": "New Update Value",
             "data_criacao": "2023-03-14T15:00:00Z",
             "data_modificacao": "2023-03-14T15:00:00Z",
